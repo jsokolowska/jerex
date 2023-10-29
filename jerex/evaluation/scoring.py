@@ -7,9 +7,12 @@ METRIC_LABELS = ['prec_micro', 'rec_micro', 'f1_micro', 'prec_macro', 'rec_macro
 
 
 def score(gt: List[List[Tuple]], pred: List[List[Tuple]], type_idx=None, print_results: bool = False):
-    with open("./mixed.json", "w+") as f:
-        d = {"gt": gt, "pred": pred}
-        f.write(json.dumps(d))
+    try:
+        with open("./mixed.json", "w+") as f:
+            d = {"gt": [list([list(a) for a in f]) for f in gt], "pred": [list([list(a) for a in f]) for f in pred]}
+            f.write(json.dumps(d))
+    except Exception as e:
+        print("Error while writing to file", e)
 
     assert len(gt) == len(pred)
 
