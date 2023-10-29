@@ -1,4 +1,5 @@
 from typing import List, Tuple
+import json
 
 from sklearn.metrics import precision_recall_fscore_support as prfs
 
@@ -6,6 +7,10 @@ METRIC_LABELS = ['prec_micro', 'rec_micro', 'f1_micro', 'prec_macro', 'rec_macro
 
 
 def score(gt: List[List[Tuple]], pred: List[List[Tuple]], type_idx=None, print_results: bool = False):
+    with open("./mixed.json", "w+") as f:
+        d = {"gt": gt, "pred": pred}
+        f.write(json.dumps(d))
+
     assert len(gt) == len(pred)
 
     gt_flat = []
