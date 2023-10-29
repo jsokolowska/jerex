@@ -1,5 +1,7 @@
 from typing import List, Tuple
 import json
+import pickle
+from datetime import datetime
 
 from sklearn.metrics import precision_recall_fscore_support as prfs
 
@@ -7,10 +9,11 @@ METRIC_LABELS = ['prec_micro', 'rec_micro', 'f1_micro', 'prec_macro', 'rec_macro
 
 
 def score(gt: List[List[Tuple]], pred: List[List[Tuple]], type_idx=None, print_results: bool = False):
+    dt_marker = datetime.now().strftime("%Y-%m-%d:%H-%M-%S.%s")
     try:
-        with open("./mixed.json", "w+") as f:
+        with open("./predictions/pred-gt-" + dt_marker + ".pickle", "wb") as f:
             d = {"gt": [list([list(a) for a in f]) for f in gt], "pred": [list([list(a) for a in f]) for f in pred]}
-            f.write(json.dumps(d))
+            pickle.dump(d, f, None)
     except Exception as e:
         print("Error while writing to file", e)
 
