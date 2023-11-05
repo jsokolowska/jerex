@@ -1,5 +1,5 @@
 dataset:
-  test_path: ./data/datasets/docred_joint/test_joint.json
+  test_path: /kaggle/input/docred-wikipedia-videogames/tmp-wikipediavideo_games.json
 
 model:
   model_path: ./data/models/docred_joint/joint_multi_instance/model.ckpt
