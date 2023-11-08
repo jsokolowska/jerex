@@ -1,5 +1,6 @@
 import hydra
 from hydra.core.config_store import ConfigStore
+from hydra.core.global_hydra import GlobalHydra
 from omegaconf import OmegaConf
 
 from configs import TestConfig

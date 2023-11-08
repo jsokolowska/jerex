@@ -385,7 +385,7 @@ class Document:
         self._relations = relations
 
         # sub-word document encoding
-        self._encoding = encoding
+        self._encoding = encoding[:700]
 
         self._title = title
 
