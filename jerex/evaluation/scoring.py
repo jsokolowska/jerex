@@ -17,7 +17,10 @@ def score(gt: List[List[Tuple]], pred: List[List[Tuple]], type_idx=None, print_r
     except Exception as e:
         print("Error while writing to file", e)
 
-    assert len(gt) == len(pred)
+    # corner case of no ground truth
+    if len(gt) != len(pred):
+        print("Omitting scoring due to lack of ground truth")
+        return {}
 
     gt_flat = []
     pred_flat = []
